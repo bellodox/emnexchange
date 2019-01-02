@@ -11,6 +11,14 @@ display: none;
 margin: 1% 0 0.5% 0;
 }
 
+.centered-profile {
+margin: auto;
+max-width: 300px;}
+
+.chart-background {
+background-color: #2D3744;}
+
+
 .chart {
 background: rgba(255,255,255,.5);
 border-radius: 10px;
