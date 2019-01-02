@@ -203,6 +203,7 @@ function drawChart(chartData)
                 maxZoomIn: 4.0
         },*/
         seriesType: 'candlesticks',
+	backgroundColor: 'none',
         series: {0: {type: 'bars', targetAxisIndex: 1, color: '#eaeaea'}}
     };
     
