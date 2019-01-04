@@ -1,4 +1,4 @@
-# OpenTrade is the best opensource cryptocurrency exchange!
+# Enmanet is the best opensource cryptocurrency exchange!
 
 Live version: https://trade.multicoins.org/
 
@@ -19,7 +19,7 @@ bash install_nvm.sh
 
 nvm install 8.0.0
 
-git clone https://github.com/3s3s/opentrade.git
+git clone https://github.com/Enmanet/emnexchange.git
 cd opentrade
 
 [sudo] npm install 

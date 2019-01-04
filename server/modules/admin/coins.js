@@ -26,10 +26,10 @@ exports.onTestRPC = function(ws, req, data)
 {
     utils.GetSessionStatus(req, status => {
         if (!status.active || status.id != 1 || !data || !data.path || data.path.indexOf('/') == -1)
-            return ws.send(JSON.stringify({request: 'rpc_responce', message: {result: false, data: 'OpenTrade: Bad request'}}));
+            return ws.send(JSON.stringify({request: 'rpc_responce', message: {result: false, data: 'Enmanet: Bad request'}}));
             
         SendRPC(data.coin, data.command, data.params, ret => {
-            if (ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify({request: 'rpc_responce', message: {data: 'OpenTrade: Bad request'}}));
+            if (ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify({request: 'rpc_responce', message: {data: 'Enmanet: Bad request'}}));
         });
     });
     

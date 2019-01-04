@@ -44,7 +44,7 @@ exports.object = {
         'Your history' : ['Your history', 'Ваши исполненные заявки'],
         'Trade history' : ['Trade history', 'История торгов'],
         'Forgot your password?' : ['Forgot your password?', 'Забыли пароль?'],
-        'New to OpenTrade?' : ['New to OpenTrade?', 'Еще не зарегистрированы на OpenTrade?'],
+        'New to Enmanet?' : ['New to Enmanet?', 'Еще не зарегистрированы на OpenTrade?'],
         'Sign up now!' : ['Sign up now!', 'Зарегистрироваться сейчас!'],
         'OpenTrade - Open Source Cryptocurrency Exchange' : ['OpenTrade - Open Source Cryptocurrency Exchange', 'OpenTrade - Биржа криптовалют с открытым кодом']
     }
