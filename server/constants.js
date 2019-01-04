@@ -1,12 +1,12 @@
 'use strict';
 
-const SUPPORT_EMAIL = 'support@email.com';
-const NOREPLY_EMAIL = 'no-reply@email.com';
-const DOMAIN = 'localhost';
+const SUPPORT_EMAIL = 'enmanetexchange@enmanet.com';
+const NOREPLY_EMAIL = 'enmanetexchange@enmanet.com';
+const DOMAIN = 'enmanet.com';
 
-const MAILER_NAME = 'OpenTrade Mailer';
-const START_MESSAGE = 'OpenTrade started!';
-const OPENTRADE = "OpenTrade";
+const MAILER_NAME = 'enmanet';
+const START_MESSAGE = 'enmanet started!';
+const OPENTRADE = "enmanet";
 
 exports.ALLOW_EMAIL_CHANGING = true;
 
@@ -19,12 +19,12 @@ exports.share = {
    emailVerificationEnabled: 'enabled', //'disabled' // !!! WARNING !!! DANGER !!! DO NOT CHANGE IT IN PRODUCTION !!! FOR TESTS ONLY !!!
    pinVerificationEnabled: 'enabled', //'disabled'
    
-   TRADE_COMISSION: 0.001, //change trade comission percent
+   TRADE_COMISSION: 0.020, //change trade comission percent
    DUST_VOLUME: 0.000001, //change minimal order volume
    
-   TRADE_MAIN_COIN: "Marycoin",
-   TRADE_MAIN_COIN_TICKER: "MC",
-   TRADE_DEFAULT_PAIR: "Litecoin"
+   TRADE_MAIN_COIN: "Litecoin",
+   TRADE_MAIN_COIN_TICKER: "LTC",
+   TRADE_DEFAULT_PAIR: "EMN"
 };
 
 exports.SESSION_TIME = 3600*1000; //one hour
