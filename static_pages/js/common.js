@@ -30,8 +30,8 @@ if ($(this).is(':checked')) {
 $("body").addClass('dark-mode');
 utils.setCookie('mode', 'dark-mode');
 } else {
-$("body").removeClass('dark-mode');
-eraseCookie("mode", "dark-mode");
+$("body").addClass('dark-mode');
+utils.setCookie('mode', 'dark-mode');
 }
 });
 
