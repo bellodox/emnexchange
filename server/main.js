@@ -13,9 +13,7 @@ const hsts = require('hsts')
 const redisClient = require('redis').createClient();
 const app = express();
 const crossdomain = require('helmet-crossdomain')
-
-
-
+const hpkp = require('hpkp')
 const log_file = require("fs").createWriteStream(__dirname + '/debug.log', {flags : 'w'});
 const log_stdout = process.stdout;
 const limiter = require('express-limiter')(app, redisClient);
@@ -54,7 +52,33 @@ app.use(crossdomain())
 // You can use any of the following values:
 app.use(crossdomain({ permittedPolicies: 'master-only' }))
 
+
 //app.use(cookieParser());
+
+
+// Limit requests to 100 per hour per ip address.
+limiter({
+  lookup: ['connection.remoteAddress'],
+  total: 100,
+  expire: 1000 * 60 * 60
+})
+
+const ninetyDaysInSeconds = 7776000
+app.use(hpkp({
+  maxAge: ninetyDaysInSeconds,
+  sha256s: ['rrrraaaaaaa', 'raaaaaaa'],
+  includeSubDomains: true,         // optional
+  reportUri: 'http://enmanet.com', // optional
+  reportOnly: false,               // optional
+
+  // Set the header based on a condition.
+  // This is optional.
+  setIf(req, res) {
+    return req.secure
+  }
+}))
+
+
 
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(g_constants.SSL_options, app);
@@ -133,6 +157,3 @@ require("./database").Init(() => {
     require('./reqHandler.js').handle(app, g_constants.WEB_SOCKETS);
 });
 //require("./modules/users/market").Init();
-
-
-
