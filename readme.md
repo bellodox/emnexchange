@@ -1,6 +1,6 @@
 # Enmanet is the best opensource cryptocurrency exchange!
 
-Live version: https://trade.multicoins.org/
+Live version: https://enmanet.com
 
 
 Step-by-step install instructions:
@@ -20,7 +20,7 @@ bash install_nvm.sh
 nvm install 8.0.0
 
 git clone https://github.com/Enmanet/emnexchange.git
-cd opentrade
+cd enmanetexchange
 
 [sudo] npm install 
 [sudo] npm install -g forever
