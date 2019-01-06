@@ -14,6 +14,11 @@ const redisClient = require('redis').createClient();
 const app = express();
 const crossdomain = require('helmet-crossdomain')
 const hpkp = require('hpkp')
+const csp = require('helmet-csp')
+
+
+
+
 const log_file = require("fs").createWriteStream(__dirname + '/debug.log', {flags : 'w'});
 const log_stdout = process.stdout;
 const limiter = require('express-limiter')(app, redisClient);
@@ -37,6 +42,45 @@ app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
+
+
+app.use(csp({
+  // Specify directives as normal.
+  directives: {
+    defaultSrc: ["'self'", 'enmanet.com'],
+    scriptSrc: ["'self'", "'unsafe-inline'"],
+    sandbox: ['allow-forms', 'allow-scripts'],
+    reportUri: '/report-violation',
+    objectSrc: ["'none'"],
+    upgradeInsecureRequests: true,
+    workerSrc: false  // This is not set.
+  },
+
+  // This module will detect common mistakes in your directives and throw errors
+  // if it finds any. To disable this, enable "loose mode".
+  loose: false,
+
+  // Set to true if you only want browsers to report errors, not block them.
+  // You may also set this to a function(req, res) in order to decide dynamically
+  // whether to use reportOnly mode, e.g., to allow for a dynamic kill switch.
+  reportOnly: false,
+
+  // Set to true if you want to blindly set all headers: Content-Security-Policy,
+  // X-WebKit-CSP, and X-Content-Security-Policy.
+  setAllHeaders: false,
+
+  // Set to true if you want to disable CSP on Android where it can be buggy.
+  disableAndroid: false,
+
+  // Set to false if you want to completely disable any user-agent sniffing.
+  // This may make the headers less compatible but it will be much faster.
+  // This defaults to `true`.
+  browserSniff: true
+}))
+
+
+
+
 
 
 app.set('forceSSLOptions', {
@@ -66,7 +110,7 @@ limiter({
 const ninetyDaysInSeconds = 7776000
 app.use(hpkp({
   maxAge: ninetyDaysInSeconds,
-  sha256s: ['rrrraaaaaaa', 'raaaaaaa'],
+  sha256s: ['raaaaaaaa', 'raaaaaaaa'],
   includeSubDomains: true,         // optional
   reportUri: 'http://enmanet.com', // optional
   reportOnly: false,               // optional
@@ -157,3 +201,6 @@ require("./database").Init(() => {
     require('./reqHandler.js').handle(app, g_constants.WEB_SOCKETS);
 });
 //require("./modules/users/market").Init();
+
+
+
