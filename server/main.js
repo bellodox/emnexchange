@@ -8,6 +8,8 @@ const util = require('util');
 const express = require('express');
 const bodyParser = require('body-parser');
 const WebSocketServer = require('ws').Server;
+const helmet = require('helmet')
+
 
 const log_file = require("fs").createWriteStream(__dirname + '/debug.log', {flags : 'w'});
 const log_stdout = process.stdout;
@@ -24,10 +26,12 @@ console.log = function(d, userID) {
 };
 
 const app = express();
+app.use(helmet())
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
+
 
 //app.use(cookieParser());
 

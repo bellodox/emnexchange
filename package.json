@@ -13,5 +13,6 @@
     "sqlite3": "latest",
     "ejs": "latest",
     "cors": "latest"
+	"helmet": "latest"
   }
 }
