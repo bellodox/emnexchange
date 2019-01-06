@@ -115,7 +115,7 @@ limiter({
 const ninetyDaysInSeconds = 7776000
 app.use(hpkp({
   maxAge: ninetyDaysInSeconds,
-  sha256s: ['asd4twwfffaad', 'asfgrgfdfgdfg'],
+  sha256s: ['INSERT_VALID_HPKP_HASH', 'INSERT_VALID_KPKP_HASH'],
   includeSubDomains: true,         // optional
   reportUri: 'http://enmanet.com', // optional
   reportOnly: false,               // optional
