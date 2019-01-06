@@ -9,6 +9,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const WebSocketServer = require('ws').Server;
 const helmet = require('helmet')
+const hsts = require('hsts')
+
 
 
 const log_file = require("fs").createWriteStream(__dirname + '/debug.log', {flags : 'w'});
@@ -26,6 +28,10 @@ console.log = function(d, userID) {
 };
 
 const app = express();
+const app = express();
+app.use(hsts({
+  maxAge: 15552000  // 180 days in seconds
+}))
 app.use(helmet())
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
