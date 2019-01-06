@@ -1,5 +1,7 @@
 'use strict';
 
+utils.setCookie('mode', 'dark-mode');
+
 $('#id-button-lang-en').on('click', e => {
     utils.setCookie('lang', 'en');
     location.reload(); 
