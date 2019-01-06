@@ -56,8 +56,8 @@ $(() => {
   });
 
   UpdateBuySellText();  
-
-  setInterval(IsNeadScroll, 5000);
+ 
+//  setInterval(IsNeadScroll, 5000);
   setInterval(UpdateHelpers, 10000);
 
   $('.staff_area').hide();
@@ -168,7 +168,7 @@ function AddOrder(order)
         '<td>'+order.order+'</td>'+
         '<td>'+order.amount.toFixed(8)*1+'</td>'+
         '<td>'+order.coin+'</td>'+
-        '<td>'+order.price.toFixed(8)*1+" "+MC+'</td>'+
+        '<td>'+order.price.toFixed(8)+" "+MC+'</td>'+
       '</tr>'
     '</table>';
   
@@ -585,9 +585,9 @@ function UpdateTradeHistoryUser(history)
     const tr = $('<tr></tr>')
       .append($('<td>'+utils.timeConverter(history[i].time*1)+'</td>'))
       .append($('<td><span class="'+typeColor+'">'+history[i].buysell+'</span></td>'))
-      .append($('<td>'+(history[i].volume*1).toFixed(7)*1+'</td>'))
-      .append($('<td>'+(history[i].fromBuyerToSeller/history[i].volume).toFixed(7)*1+'</td>'));
-    
+      .append($('<td>'+(history[i].volume*1).toFixed(8)+'</td>'))
+      .append($('<td>'+(history[i].fromBuyerToSeller/history[i].volume).toFixed(8)+'</td>'));
+   
     $('#id_user_orders_history').append(tr);
   }
 }
@@ -604,28 +604,27 @@ function UpdateOrders(orders)
   var volumeBuyPair = 0.0;
   for (var i=0; i<orders.buy.length; i++)
   {
-    const price = utils.MakePrice(orders.buy[i].price);//(orders.buy[i].price*1.0).toFixed(8)*1;
-    const amountMain = utils.MakePrice(orders.buy[i].price*orders.buy[i].amount); //(orders.buy[i].price*orders.buy[i].amount*1.0).toFixed(8)*1;
+    const price = utils.MakePrice(orders.buy[i].price).toFixed(8);//(orders.buy[i].price*1.0).toFixed(8)*1;
     const amountPair = utils.MakePrice(orders.buy[i].amount); //(orders.buy[i].amount*1.0).toFixed(8)*1;
-
-    const delButton = $('<a href="#" title="Delete orders" class="del_order_button" style="text-decoration: none">&#10006;&nbsp</a>').hide();
-    delButton.on('click', e => {
-      e.preventDefault();
-      socket.send(JSON.stringify({request: 'del_orders', message: {coinName: g_CurrentPair, price: price}}));
-    });
-    
+    const amountMain = orders.buy[i].price*orders.buy[i].amount; //(orders.buy[i].price*orders.buy[i].amount*1.0).toFixed(8)*1;
+   
+        const delButton = $('<a href="#" title="Delete orders" class="del_order_button" style="text-decoration: none">&#10006;&nbsp</a>').hide();
+     delButton.on('click', e => {
+       e.preventDefault();
+       socket.send(JSON.stringify({request: 'del_orders', message: {coinName: g_CurrentPair, price: price}}));
+     });
+     
     const tr = $('<tr></tr>')
       .append($('<td>'+price+'</td>'))
-      .append($('<td>'+amountMain+'</td>'))
-      .append($('<td>'+amountPair+'</td>'))
-      .append(delButton);
-      
+      .append($('<td>'+(amountMain*1).toFixed(8)+'</td>'))
+      .append($('<td>'+amountPair+'</td>'));
+     
     volumeBuy += amountMain*1;
     volumeBuyPair += amountPair*1;
-    
-    const curVolumeBuy = (volumeBuy*1.0).toFixed(8)*1;
-    const curVolumePair = (volumeBuyPair*1.0).toFixed(8)*1;
-    
+   
+    const curVolumeBuy = (volumeBuy*1.0).toFixed(8);
+    const curVolumePair = (volumeBuyPair*1.0).toFixed(8);
+   
     tr.on('click', e => {
       $('#inputSellAmount').val(curVolumePair);
       $('#inputSellPrice').val(price);
@@ -635,20 +634,20 @@ function UpdateOrders(orders)
 
     $('#id_buy_orders_body').append(tr);
   }
-  
-  if (orders.volumes && orders.volumes.length && orders.volumes[0].sum_amount_price)
+ 
+  if (orders.volumes && orders.volumes.length>1 && orders.volumes[0].sum_amount_price)
     volumeBuy = orders.volumes[0].sum_amount_price
-  
-  $('#id_buy_volume').text(" " + (volumeBuy*1).toFixed(8)*1+" "+coinNameToTicker[utils.MAIN_COIN].ticker);
-  
+ 
+  $('#id_buy_volume').text(" " + (volumeBuy*1).toFixed(8)+" "+coinNameToTicker[utils.MAIN_COIN].ticker);
+ 
   var volumeSell = 0.0;
   var volumeSellPair = 0.0;
   for (var i=0; i<orders.sell.length; i++)
   {
-    const price = utils.MakePrice(orders.sell[i].price); //(orders.sell[i].price*1.0).toFixed(8)*1;
-    const amountMain = utils.MakePrice(orders.sell[i].price*orders.sell[i].amount); //(orders.sell[i].price*orders.sell[i].amount*1.0).toFixed(8)*1;
+    const price = utils.MakePrice(orders.sell[i].price).toFixed(8); //(orders.sell[i].price*1.0).toFixed(8)*1;
     const amountPair = utils.MakePrice(orders.sell[i].amount); //(orders.sell[i].amount*1.0).toFixed(8)*1;
-    
+    const amountMain = orders.sell[i].amount*orders.sell[i].price; //(orders.sell[i].price*orders.sell[i].amount*1.0).toFixed(8)*1;
+   
     const delButton = $('<a href="#" title="Delete orders" class="del_order_button" style="text-decoration: none">&#10006;&nbsp</a>').hide();
     delButton.on('click', e => {
       e.preventDefault();
@@ -657,16 +656,15 @@ function UpdateOrders(orders)
     
     const tr = $('<tr></tr>')
       .append($('<td>'+price+'</td>'))
-      .append($('<td>'+amountMain+'</td>'))
-      .append($('<td>'+amountPair+'</td>'))
-      .append(delButton);
-      
+      .append($('<td>'+(amountMain*1).toFixed(8)+'</td>'))
+      .append($('<td>'+amountPair+'</td>'));
+     
     volumeSell += amountPair*1;
     volumeSellPair += amountMain*1;
-    
-    const curVolumeSell = (volumeSell*1.0).toFixed(8)*1;
-    const curVolumePair = (volumeSellPair*1.0).toFixed(8)*1;
-    
+   
+    const curVolumeSell = (volumeSell*1.0).toFixed(8);
+    const curVolumePair = (volumeSellPair*1.0).toFixed(8);
+   
     tr.on('click', e => {
       $('#inputBuyAmount').val(curVolumeSell);
       $('#inputBuyPrice').val(price);
@@ -679,18 +677,18 @@ function UpdateOrders(orders)
 
   if (orders.volumes && orders.volumes.length>1 && orders.volumes[1].sum_amount)
     volumeSell = orders.volumes[1].sum_amount
-
-  $('#id_sell_volume').text(" " + (volumeSell*1).toFixed(8)*1+" "+coinNameToTicker[g_CurrentPair].ticker);
-  
+ 
+  $('#id_sell_volume').text(" " + (volumeSell*1).toFixed(8)+" "+coinNameToTicker[g_CurrentPair].ticker);
+ 
   if (!orders.buy.length)
     orders.buy = [{price: 0.0}];
   if (!orders.sell.length)
     orders.sell = [{price: 0.0}];
-  
-  const txtBuyPrice = utils.MakePrice(orders.buy[0].price);
-  const txtSellPrice = utils.MakePrice(orders.sell[0].price);
-  
-  const askButton = $('<button id="button_max_ask" type="button" class="p-0 btn btn-link"></button>').append(txtBuyPrice).on('click', e => {
+ 
+  const txtBuyPrice = utils.MakePrice(orders.buy[0].price).toFixed(8);
+  const txtSellPrice = utils.MakePrice(orders.sell[0].price).toFixed(8);
+ 
+  const askButton = $('<button type="button" class="p-0 btn btn-link"></button>').append(txtBuyPrice).on('click', e => {
         $('#inputBuyPrice').val(txtBuyPrice);
       })
   const bidButton = $('<button id="button_max_bid"type="button" class="p-0 btn btn-link"></button>').append(txtSellPrice).on('click', e => {
@@ -731,7 +729,7 @@ function UpdateUserOrders(userOrders)
           utils.alert_fail(data.message);
           return;
         }
-        utils.alert_success('Your order is closed!');
+        utils.alert_success('Your order was cancelled!');
         socket.send(JSON.stringify({request: 'getpair', message: [utils.MAIN_COIN, g_CurrentPair]}));
       }, "json" );
     });
@@ -741,7 +739,7 @@ function UpdateUserOrders(userOrders)
       .append($('<td>'+utils.timeConverter(userOrders[i].time*1)+'</td>'))
       .append($('<td><span class="'+typeColor+'">'+userOrders[i].buysell+'</span></td>'))
       .append($('<td>'+(userOrders[i].amount*1).toFixed(8)*1+' '+coinNameToTicker[g_CurrentPair].ticker+'</td>'))
-      .append($('<td>'+(userOrders[i].price*1).toFixed(8)*1+" "+coinNameToTicker[utils.MAIN_COIN].ticker+'</td>'))
+      .append($('<td>'+(userOrders[i].price*1).toFixed(8)+" "+coinNameToTicker[utils.MAIN_COIN].ticker+'</td>'))
       .append($('<td></td>').append(close));
       
     $('#id_user_orders').append(tr);
@@ -759,7 +757,7 @@ function UpdateBalance(message)
     {
       $('#id_balance_spiner1').hide();
       $('#id_buy_balance').empty();
-      buyBalance = (message.balance*1.0).toFixed(8)*1;
+      buyBalance = (message.balance*1).toFixed(8);
       if (buyBalance < 0) buyBalance = 0.0;
       
       const txtBalance = buyBalance;
@@ -811,8 +809,8 @@ function UpdateBuyComission()
   {
     const comission = utils.COMISSION*amount*price;
     const total = amount*price+comission;
-    $('#inputBuyComission').val(comission.toFixed(8)*1);
-    $('#inputBuyTotal').val(total.toFixed(8)*1);
+    $('#inputBuyComission').val(comission.toFixed(8));
+    $('#inputBuyTotal').val(total.toFixed(8));
     $('#inputBuyTotal').attr('title', 'title');
   }
   catch(e) {}
@@ -828,8 +826,8 @@ function UpdateBuyComissionFromTotal()
   {
     const amount = (total / (price + utils.COMISSION*price)).toFixed(8)*1;
     const comission = utils.COMISSION*amount*price;
-    $('#inputBuyComission').val(comission.toFixed(8)*1);
-    $('#inputBuyAmount').val(amount.toFixed(8)*1);
+    $('#inputBuyComission').val(comission.toFixed(8));
+    $('#inputBuyAmount').val(amount.toFixed(8));
   }
   catch(e) {}
   
@@ -843,8 +841,8 @@ function UpdateSellComissionFromTotal()
   {
     const amount = (total / (price + utils.COMISSION*price)).toFixed(8)*1;
     const comission = utils.COMISSION*amount*price;
-    $('#inputSellComission').val(comission.toFixed(8)*1);
-    $('#inputSellAmount').val(amount.toFixed(8)*1);
+    $('#inputSellComission').val(comission.toFixed(8));
+    $('#inputSellAmount').val(amount.toFixed(8));
   }
   catch(e) {}
   //UpdateSellComission();
@@ -859,9 +857,9 @@ function UpdateSellComission()
   try 
   {
     const comission = utils.COMISSION*amount*price;
-    const total = amount*price+comission;
-    $('#inputSellComission').val(comission.toFixed(8)*1);
-    $('#inputSellTotal').val(total.toFixed(8)*1);
+    const total = amount*price-comission;
+    $('#inputSellComission').val(comission.toFixed(8));
+    $('#inputSellTotal').val(total.toFixed(8));
   }
   catch(e) {}
   

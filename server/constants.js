@@ -20,7 +20,7 @@ exports.share = {
    pinVerificationEnabled: 'enabled', //'disabled'
    
    TRADE_COMISSION: 0.020, //change trade comission percent
-   DUST_VOLUME: 0.000001, //change minimal order volume
+   DUST_VOLUME: 0.00000001, //change minimal order volume
    
    TRADE_MAIN_COIN: "Litecoin",
    TRADE_MAIN_COIN_TICKER: "LTC",

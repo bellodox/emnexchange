@@ -44,7 +44,7 @@ exports.roundDown = function(number, decimals) {
         if (!exports.isNumeric(number)) 
             return number;
             
-        decimals = decimals || 7;
+        decimals = decimals || 8;
         
         if (!exports.isNumeric(decimals))
             return number;
