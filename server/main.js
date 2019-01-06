@@ -15,7 +15,7 @@ const app = express();
 const crossdomain = require('helmet-crossdomain')
 const hpkp = require('hpkp')
 const csp = require('helmet-csp')
-
+const forceDomain = require('forcedomain');
 
 
 
@@ -32,6 +32,11 @@ console.log = function(d, userID) {
   if (userID)
     require("./utils").log_user(userID, d);
 };
+
+
+app.use(forceDomain({
+  hostname: 'www.enmanet.com'
+}));
 
 app.use(hsts({
   maxAge: 15552000  // 180 days in seconds
@@ -110,7 +115,7 @@ limiter({
 const ninetyDaysInSeconds = 7776000
 app.use(hpkp({
   maxAge: ninetyDaysInSeconds,
-  sha256s: ['raaaaaaaa', 'raaaaaaaa'],
+  sha256s: ['asd4twwfffaad', 'asfgrgfdfgdfg'],
   includeSubDomains: true,         // optional
   reportUri: 'http://enmanet.com', // optional
   reportOnly: false,               // optional
@@ -123,6 +128,10 @@ app.use(hpkp({
 }))
 
 
+var compression = require('compression')
+
+// compress all responses
+app.use(compression())
 
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(g_constants.SSL_options, app);

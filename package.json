@@ -15,5 +15,6 @@
     "cors": "latest"
 	"helmet": "latest"
 	"hsts": "latest"
+	"compression": "latest"
   }
 }
