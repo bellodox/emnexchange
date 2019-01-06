@@ -10,12 +10,15 @@ const bodyParser = require('body-parser');
 const WebSocketServer = require('ws').Server;
 const helmet = require('helmet')
 const hsts = require('hsts')
+const redisClient = require('redis').createClient();
+const app = express();
+const crossdomain = require('helmet-crossdomain')
 
 
 
 const log_file = require("fs").createWriteStream(__dirname + '/debug.log', {flags : 'w'});
 const log_stdout = process.stdout;
-
+const limiter = require('express-limiter')(app, redisClient);
 console.log = function(d, userID) { 
     if (!g_constants.DEBUG_LOG)
         return;
@@ -27,17 +30,29 @@ console.log = function(d, userID) {
     require("./utils").log_user(userID, d);
 };
 
-const app = express();
-const app = express();
 app.use(hsts({
   maxAge: 15552000  // 180 days in seconds
 }))
 app.use(helmet())
+app.disable('x-powered-by')
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
 
+
+app.set('forceSSLOptions', {
+  enable301Redirects: true,
+  trustXFPHeader: false,
+  httpsPort: 443,
+  sslRequiredMessage: 'SSL Required.'
+});
+
+// Sets X-Permitted-Cross-Domain-Policies: none
+app.use(crossdomain())
+
+// You can use any of the following values:
+app.use(crossdomain({ permittedPolicies: 'master-only' }))
 
 //app.use(cookieParser());
 
