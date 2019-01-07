@@ -12,9 +12,9 @@
     "sendmail": "latest",
     "sqlite3": "latest",
     "ejs": "latest",
-    "cors": "latest"
-	"helmet": "latest"
-	"hsts": "latest"
-	"compression": "latest"
+    "cors": "latest",
+	"helmet": "latest",
+	"compression": "latest",
+	"force-domain": "latest"
   }
 }
