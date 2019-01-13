@@ -758,8 +758,8 @@ exports.onAccountWithdraw = function(req, res)
         
     if (!utils.isNumeric(queryStr.quantity))
         return onError(req, res, 'Bad request. quantity is not numeric value');
-    if (queryStr.quantity < 0.00001)
-        return onError(req, res, 'Bad request. quantity < 0.00001 (is too low)');
+    if (queryStr.quantity < 0.000001)
+        return onError(req, res, 'Bad request. quantity < 0.000001 (is too low)');
 
     utils.GetCoinFromTicker(queryStr.currency, coin => {
         if (!coin || !coin.name) 
