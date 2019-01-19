@@ -49,9 +49,9 @@ exports.CloseAllUserOrders = function(userID, coinName)
 
 exports.CloseUserOrder = async function(userID, orderROWID, callback)
 {
-    //const counter = c || 0;
-    //if (counter > 5)
-    //    return callback(false, 'Coin is locked');
+    const counter = c || 0;
+    if (counter > 0)
+        return callback(false, 'Coin is locked');
         
     if (IsOrderLocked(orderROWID))
         return callback(false, 'Order is locked');
