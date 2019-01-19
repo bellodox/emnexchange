@@ -305,7 +305,7 @@ function ValidateOrderRequest(req)
 async function AddOrder(status, WHERE, newBalance, req, res, c)
 {
     const counter = c || 0;
-    if (counter > 5)
+    if (counter > 0)
         return onError(req, res, 'Coin locked. Please try later');
     
     //const coinName = escape(req.body.coin);    
