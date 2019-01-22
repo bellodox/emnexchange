@@ -170,7 +170,7 @@ function ShowDepositAddress(coin)
         .append($('<li class="nav-item"></li>')
           .append($('<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">From Blockchain</a>')))
         .append($('<li class="nav-item"></li>')
-          .append($('<a class="nav-link" id="coupon-tab" data-toggle="tab" href="#coupon" role="tab" aria-controls="coupon" aria-selected="false">Redeem Coupon</a>')))
+          .append($('<a class="nav-link" id="coupon-tab" data-toggle="tab" href="" role="tab" aria-controls="coupon" aria-selected="false"></a>')))
       .append($('<div class="tab-content w-100" id="depositTabContent"></div>')
         .append($('<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"></div>')
           .append(homeArea))
@@ -245,7 +245,7 @@ function ShowWithdrawDialog(coin, coinID, coinTicker)
     const btnToAddress = $('<a class="nav-link active" id="homeWithdraw-tab" data-toggle="tab" href="#homeWithdraw" role="tab" aria-controls="homeWithdraw" aria-selected="true">To Address</a>')
       .on('click', e=> {addressGroup.show();});
     
-    const btnToCoupon = $('<a class="nav-link" id="couponWithdraw-tab" data-toggle="tab" href="#couponWithdraw" role="tab" aria-controls="couponWithdraw" aria-selected="false">To Coupon</a>')
+    const btnToCoupon = $('<a class="nav-link" id="couponWithdraw-tab" data-toggle="tab" href="" role="tab" aria-controls="couponWithdraw" aria-selected="false"></a>')
       .on('click', e => {addressGroup.hide();});
       
     if (bIsFiat)
