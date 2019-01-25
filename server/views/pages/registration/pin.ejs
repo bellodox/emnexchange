@@ -13,7 +13,7 @@
         <div class="offset2 col-md-4">
             <h2>Verify it's you</h2>
             <form method="post" id='pin_check_form' action="/pin">
-                <% var redirect='/'; try{redirect=path_redirect}catch(e){}%>
+                <% var redirect='/index'; try{redirect=path_redirect}catch(e){}%>
                 <input id='id_redirect' name='login_redirect' type='hidden' value='<%= redirect%>'>
                 <div class="form-group"> 
                     <label for="id_pin" class="control-label">We've sent a verification code to your email. Enter the code from the email in the field below. </label> 
