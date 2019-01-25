@@ -16,7 +16,9 @@ const cors = require('cors');
 
 exports.handle = function(app, wss)
 {
-    app.get('/', onMain);
+
+    app.get('/', onFront);
+    app.get('/index', onMain);
     app.get('/market/*', onMain);
     app.get('/index.html', onMain);
     
@@ -107,6 +109,7 @@ exports.handle = function(app, wss)
     app.get('/history', onGetHistory);
     app.get('/detailbalance', onGetBalanceDetails);
     app.get('/fixbalance', onFixBalance);
+
     
     app.get('/bitcoinaverage/ticker-all-currencies/', onLocalBitcoinsProxyAPI);
 
@@ -134,6 +137,12 @@ function CommonRender(req, res, page)
         console.log(e.message);
     }
 }
+
+function onFront(req, res)
+{
+    CommonRender(req, res, 'pages/front');
+}
+
 
 function onMain(req, res)
 {
