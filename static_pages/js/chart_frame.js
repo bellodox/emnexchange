@@ -195,7 +195,7 @@ function drawChart(chartData)
         },*/
         //width: 800,
         legend: 'none',
-        colors: ['blue'],
+        colors: ['red'],
         //vAxis: {viewWindow: {min: vAxisMin} },
         /*explorer: {
                 axis: 'horizontal',
@@ -203,8 +203,9 @@ function drawChart(chartData)
                 maxZoomIn: 4.0
         },*/
         seriesType: 'candlesticks',
-	backgroundColor: 'none',
-        series: {0: {type: 'bars', targetAxisIndex: 1, color: '#eaeaea'}}
+	backgroundColor: '#859FB4',
+        color: '#fff',
+        series: {0: {type: 'bars', targetAxisIndex: 1, color: '#3DCE00'}}
     };
     
     var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
@@ -257,10 +258,10 @@ function SetChartLegend()
     $('#chart_legend').empty();
     $('#chart_legend').append(legend);
     
-    const button24 = $('<button type="button" class="btn btn-outline-dark btn-sm"><small>24 Hours</small></button>').on('click', e => {storage.setItem('ChartPeriod', 24); location.reload();});
-    const button250 = $('<button type="button" class="btn btn-outline-dark btn-sm"><small>7 Days</small></button>').on('click', e => {storage.setItem('ChartPeriod', 250); location.reload();});
-    const button1000 = $('<button type="button" class="btn btn-outline-dark btn-sm"><small>1M</small></button>').on('click', e => {storage.setItem('ChartPeriod', 1000); location.reload();});
-    const button6000 = $('<button type="button" class="btn btn-outline-dark btn-sm"><small>6M</small></button>').on('click', e => {storage.setItem('ChartPeriod', 6000); location.reload();});
+    const button24 = $('<button type="button" class="btn btn-outline-white btn-sm"><small>24 Hours</small></button>').on('click', e => {storage.setItem('ChartPeriod', 24); location.reload();});
+    const button250 = $('<button type="button" class="btn btn-outline-white btn-sm"><small>7 Days</small></button>').on('click', e => {storage.setItem('ChartPeriod', 250); location.reload();});
+    const button1000 = $('<button type="button" class="btn btn-outline-white btn-sm"><small>1M</small></button>').on('click', e => {storage.setItem('ChartPeriod', 1000); location.reload();});
+    const button6000 = $('<button type="button" class="btn btn-outline-white btn-sm"><small>6M</small></button>').on('click', e => {storage.setItem('ChartPeriod', 6000); location.reload();});
     
     const buttons = $('<nav class="nav nav-pills"></nav>')
       .append($('<li class="nav-item"></li>').append(button24))
