@@ -559,7 +559,7 @@ exports.onConfirmWithdraw = function(req, res)
 
         let info = JSON.parse(unescape(status.info));
         if (info['blockWithdraw'] == true && status.id != 1)
-            return utils.render(res, 'pages/user/wallet', {status: status, error: true, action: 'withdraw', message: '<b>Withdraw error:</b> Block. Please contact support.'});
+            return utils.render(res, 'pages/user/wallet', {status: status, error: true, action: 'withdraw', message: '<b>Withdraw error:</b> Your withdrawals have been disabled. Block. Please contact support.'});
         
         exports.ProcessWithdraw(emailChecker[strCheck].userID, emailChecker[strCheck].address, emailChecker[strCheck].amount, emailChecker[strCheck].coinName, ret => {
             ret['status'] = status;
