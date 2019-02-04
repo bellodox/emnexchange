@@ -21,6 +21,7 @@ exports.handle = function(app, wss)
     app.get('/index', onMain);
     app.get('/market/*', onMain);
     app.get('/index.html', onMain);
+    app.get('/create_assets', onCreateAssets);
     
     app.get('/admin', onAdminMain);
     app.get('/staff', onAdminStaff);
@@ -32,6 +33,7 @@ exports.handle = function(app, wss)
     app.get('/add_coin', onHelpAddCoin);
     app.get('/referals', onRefs);
     app.get('/getreferals', onGetReferals);
+    app.get('/exploremarkets', onExplore);
     
     app.get('/api/v1/public/getmarkets', cors(), API1.onGetMarkets);
     app.get('/api/v1/public/getorderbook', cors(), API1.onGetOrderbook);
@@ -154,6 +156,17 @@ function onGetAPIKeys(req, res)
 {
     CommonRender(req, res, 'pages/api_keys');
 }
+
+function onCreateAssets(req, res)
+{
+    CommonRender(req, res, 'pages/create_assets');
+}
+
+function onExplore(req, res)
+{
+    CommonRender(req, res, 'pages/exploremarkets');
+}
+
 
 function onShowAPI(req, res)
 {

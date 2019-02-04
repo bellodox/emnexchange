@@ -1,0 +1,221 @@
+<html>
+<head>
+    <title></title>
+  <head>
+    <script>
+      var debug = <%-debug%>;
+      if (!debug && window.location.protocol != "https:" && window.location.protocol != "file:")
+          window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
+    </script>
+    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title><%-__('Enmanet -  Cryptocurrency Exchange')%></title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/styles.css" rel="stylesheet">
+    <script src="/sorttable.js"></script>
+    <script>
+      'use strict';
+    
+      const SHARE = JSON.parse('<%-JSON.stringify(share)%>');
+      
+      var grecaptcha;
+      if (!SHARE.recaptchaEnabled) grecaptcha = null;
+      
+      const PORT_SSL = SHARE.my_portSSL;
+      const MAIN_COIN = SHARE.TRADE_MAIN_COIN;
+      const DEFAULT_PAIR = SHARE.TRADE_DEFAULT_PAIR;
+      const TRADE_COMISSION = SHARE.TRADE_COMISSION;
+    </script>
+    <script src='/js/utils.js'></script>
+
+  </head>
+
+    
+</head>
+<body class="btx-intl">
+    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!--[if lt IE 10 ]>
+  <meta http-equiv=refresh content="0; URL=http://outdatedbrowser.com/en">
+  <script>window.location.href = "http://outdatedbrowser.com/en";</script>
+  <![endif]-->
+  <title>Home</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="description" content="Enmanet">
+  <meta name="fragment" content="!">
+  <meta name="format-detection" content="telephone=no" />
+  <!-- Apple META -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <link rel="stylesheet" type="text/css" href="/css/thirdparty.bundle.min.css" />
+  <link rel="stylesheet" type="text/css" href="/css/landingpage.bundle.min.css" />
+  <link rel="stylesheet" type="text/css" href="/css/prueba.css" />
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+
+
+  <!-- Core Packages  -->
+  <script type="text/javascript" src="/js/frontpage/thirdparty.bundle.min.js"></script>
+  <script type="text/javascript" src="/js/frontpage/datatables.bundle.min.js"></script>
+
+  <!-- Utility Packages -->
+  <script type="text/javascript" src="/js/frontpage/enmanetutility.bundle.min.js"></script>
+
+  <!-- Layout View Packages -->
+  <script type="text/javascript" src="/js/frontpage/enmanetviewmodel.bundle.min.js"></script>
+  <script type="text/javascript" src="/js/frontpage/layoutviewmodel.bundle.min.js"></script>
+
+
+
+
+
+
+</head>
+<body id="main_body" class="dark-theme btx-intl">
+
+  <nav class="navbar common-navbar header-nav navbar-fixed-top" id="navbar_content">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target="#common_navbar_collapse" aria-expanded="false">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <h1 class="logo">
+        <a href="/home/markets">
+          <span class="bittrex-logo-mark"></span>
+          <span class="bittrex-word-mark"></span>
+        </a>
+      </h1>
+           <button type="button" class="sm-nav-expand visible-sm">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Shown in XS, MD, LG -->
+    <div class="nav-list hidden-sm">
+      <div class="collapse navbar-collapse header-right clearfix" id="common_navbar_collapse">
+        <div class="nav-collapse-box">
+          <div class="btn-group pull-right btn-group-right " role="group">
+            <a href="/index" class="btn anchor-button">Home</a>
+
+
+                        <a class="btn anchor-button nav-log-out" href="/signup">
+                sign up
+            </a>
+        <a class="btn anchor-button md_logIn_button" href="/login">
+            log in
+        </a>
+
+
+      
+
+                     </div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  <div class="nav-list sm-nav-list hidden-lg hidden-md hidden-xs">
+      <div class="sm-nav-header clearfix">
+        <div class="nav-close-icon">
+          <span class="icon-menu-close-blue" id="close_sm_nav"></span>
+        </div>
+      </div>
+      <div class="sm-nav-body">
+        <div class="sm-nav-box">
+          <ul class="sm-nav-items" id="un_auth_nav">
+            
+
+            <li class="sm-nav-item"><a href="/index">markets</a></li>
+          </ul>
+          <ul class="sm-nav-items" id="auth_nav">
+            <li class="sm-nav-item">            <a href="/signup" >sp</a>
+        <a href="/login">log in</a>
+</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+ <section class="prueba">
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<center>
+<img src="/img/enmanet-explore.png" width="500" height="108">
+</center>
+           <div class="container pt-3">
+      <input id='id_token' type='hidden' <% var value = ''; try{if (status.token) value = "value='"+status.token+"'"}catch(e){} %> <%- value %>>
+      <div class="backgroundmarket">
+          <div class="card">
+            <div class="card-header markettextcolor">
+              <%-__('Available Markets')%>
+            </div>
+            <div class="backgroundmarket">
+              <div id='market-flex' class="d-flex d-flex-market align-items-start bd-highlight mb-0" >
+                <div id='market-container' class='container p-0 backgroundmarket'>
+                  <table class="table table-sm  table-hover table-orders sortable">
+                    <thead>
+                      <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Coin</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Vol</th>
+                        <th scope="col">Ch (%)</th>
+                      </tr>
+                    </thead>
+                    <tbody id='table-market'>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+                </div>
+
+
+
+
+
+    </section>
+
+   
+   
+
+        <!--injector section three start-->
+
+ <script src='/js/index.js'></script>
+</body>
+</html>
+
