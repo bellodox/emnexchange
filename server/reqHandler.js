@@ -117,6 +117,12 @@ exports.handle = function(app, wss)
 
 
     wss.on('connection', onWebSocketConnection);
+	
+	
+	 app.get('*', (req, res) => {
+    res.end('404 File not Found');
+                                });
+
 };
 
 function CommonRender(req, res, page)
