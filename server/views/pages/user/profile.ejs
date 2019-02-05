@@ -5,17 +5,19 @@
   <body>
 
     <% include ../../partials/header %>
-    <div id="loader" style="display:none;"></div>
 
-    <div class="centered-profile">
+<br>
+
+    <div class="centered-profile2">
+            <img align="center"  src="/logomedium.png"/>
     <div style="text-align:center;">
       <% include ../../partials/alerts %>
-      <div class="row">
+
           <div id="register-body">
-            <h2 id="register_header">Profile</h2>
+            <h2 id="register_header"><%-__('Profile')%></h2>
             <form id="profile-form" class="paper-form" action="/profile" method="post">
               <div id="profile_username" class="form-group">
-                <label for="id_username" class="control-label  requiredField">Username<span class="asteriskField">*</span> </label>
+                <label for="id_username" class="control-label  requiredField"><%-__('Username')%><span class="asteriskField">*</span> </label>
                 <input class="textinput textInput form-control" id="id_username" maxlength="30" name="username" type="text" value='<%=unescape(status.user)%>' required>
                 <div class="invalid-feedback">This field is required.</div>
               </div>
@@ -25,20 +27,20 @@
                 <div class="invalid-feedback">Please enter valid email</div>
               </div>
               <div id="profile_password" class="form-group">
-                <label for="id_password" class="control-label  requiredField">Current password<span class="asteriskField">*</span> </label>
+                <label for="id_password" class="control-label  requiredField"><%-__('Current Password')%><span class="asteriskField">*</span> </label>
                 <input class="textinput textInput form-control" id="id_password" name="password" type="password">
                 <div class="invalid-feedback">This field is required.</div>
               </div>
               <div id="profile_password1" class="form-group">
-                <label for="id_password1" class="control-label">New password</label>
+                <label for="id_password1" class="control-label"><%-__('New Password')%></label>
                 <input class="textinput textInput form-control" id="id_password1" name="password1" type="password">
               </div>
               <div id="password_password2" class="form-group">
-                <label for="id_password2" class="control-label">New password (again)</label>
+                <label for="id_password2" class="control-label"><%-__('New Password (confirm)')%></label>
                 <input class="textinput textInput form-control" id="id_password2" name="password2" type="password"> 
               </div>
               <p>
-                <button class="btn btn-success" id="profile-page-confirm-button">Update</button>
+                <button class="btn btn-success" id="profile-page-confirm-button"><%-__('Update')%></button>
               </p>
             </form>
           </div>

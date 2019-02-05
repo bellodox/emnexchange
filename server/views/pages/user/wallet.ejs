@@ -6,6 +6,7 @@
 
     <% include ../../partials/header %>
 
+
     <% var messageSuccess = ""; var messageFail = ""; var coupon = "";%>
     <% try{ %>
     <%  if (error) messageFail = message; %>
@@ -31,11 +32,11 @@
                             <table class="table table-striped table-bordered">
                               <thead>
                                 <tr>
-                                  <th scope="col">Currency</th>
-                                  <th scope="col">Balance</th>
-                                  <th scope="col">Awaiting deposit</th>
-                                  <th scope="col">Reserved in orders</th>
-                                  <th scope="col">Wallet Management</th>
+                                  <th scope="col"><%-__('Currency')%></th>
+                                  <th scope="col"><%-__('Balance')%></th>
+                                  <th scope="col"><%-__('Awaiting Deposit')%></th>
+                                  <th scope="col"><%-__('Reserved in Orders')%></th>
+                                  <th scope="col"><%-__('Wallet Management')%></th>
                                 </tr>
                               </thead>
                               <tbody id='id_wallet_body'>

@@ -115,7 +115,7 @@
                     <div class='col-md-6'>
                       <table>
                         <thead>
-                          <tr><th>Highest Ask:</th></tr>
+                          <tr><th><%-__('Highest Ask:')%></th></tr>
                         </thead>
                         <tbody>
                           <tr><td id='id_max_ask'></td></tr>
@@ -128,14 +128,14 @@
               </div>
               <form id="form_buy" class="p-3">
                 <div class="form-group row">
-                  <label for="inputBuyAmount" class="col-md-4 col-form-label form-control-sm">Amount:</label>
+                  <label for="inputBuyAmount" class="col-md-4 col-form-label form-control-sm"><%-__('Amount')%></label>
                   <div class="col-md-8">
                     <input type="text" class="form-control" id="inputBuyAmount" placeholder="0.0" aria-describedby="id_amount_buy" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 46 || event.charCode == 0 ">
                     <span class="currency" id="id_amount_buy"></span>
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="inputBuyPrice" class="col-md-4 col-form-label form-control-sm">Price:</label>
+                  <label for="inputBuyPrice" class="col-md-4 col-form-label form-control-sm"><%-__('Price')%></label>
                   <div class="col-md-8">
                     <input type="text" class="form-control" id="inputBuyPrice" placeholder="0.0" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 46 || event.charCode == 0 ">
                     <span class="currency" id="id_price_buy"></span>
@@ -198,7 +198,7 @@
                           <div class='col-md-6'>
                             <table>
                               <thead>
-                                <tr><th>Highest Bid:</th></tr>
+                                <tr><th><%-__('Highest Bid:')%></th></tr>
                               </thead>
                               <tbody>
                                 <tr><td id='id_max_bid'></td></tr>
